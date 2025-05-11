@@ -1,0 +1,38 @@
+
+// Note: This implementation of Kadane's Algorithm resets the sum to 0 when it becomes negative.
+// It works correctly when the array contains at least one non-negative number.
+// However, it returns 0 for all-negative arrays (e.g., [-5, -2, -8]) instead of the correct maximum (e.g., -2).
+// Hasan Al Mahmud
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+
+ll maxSubArray(vector<ll>&a,ll n)
+ {
+    ll ans = 0;
+    ll sum = 0;
+    for (int i=0;i<n;i++)
+	 {
+        sum +=a[i];
+        if(sum<0)
+		 {
+		 sum=0;
+	    }
+        ans=max(ans,sum);
+    }
+    return ans;
+}
+
+int main() 
+{
+    ll n;cin>>n;
+    vector<ll>a(n);
+    for(int i=0;i<n;i++)
+	 {
+        cin>>a[i];
+     }
+    ll ans=maxSubArray(a,n);
+    cout<<ans<<endl;
+    return 0;
+}
